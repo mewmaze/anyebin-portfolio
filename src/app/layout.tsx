@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "안예빈 | 프론트엔드개발자",
+  title: "안예빈 | 포트폴리오",
   description: "React와 Next.js를 활용한 프론트엔드 개발자 포트폴리오",
 };
 
