@@ -22,7 +22,7 @@ export default function Header({ scrollYProgress }: HeaderProps) {
         className="backdrop-blur-md bg-white/80 px-8 py-4 flex items-center justify-between shadow-sm"
       >
         <span className="text-lg font-bold text-gray-900">
-          안예빈's Portfolio
+          {"안예빈's portfolio"}
         </span>
         <nav>
           <ul className="flex gap-8">

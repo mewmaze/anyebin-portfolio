@@ -1,6 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/constants/projects";
 
+interface TroubleShooting {
+  title: string;
+  description: string;
+}
 export default function ProjectModal({
   project,
   isOpen,
@@ -112,7 +116,7 @@ export default function ProjectModal({
                 </p>
               </div>
 
-              {(project as any).troubleshooting && (
+              {project.troubleshooting && (
                 <div>
                   <h3
                     className="text-sm font-semibold uppercase tracking-wide mb-3"
@@ -121,8 +125,8 @@ export default function ProjectModal({
                     트러블슈팅
                   </h3>
                   <div className="space-y-3">
-                    {(project as any).troubleshooting.map(
-                      (item: any, idx: number) => (
+                    {project.troubleshooting.map(
+                      (item: TroubleShooting, idx: number) => (
                         <div
                           key={idx}
                           className="p-4 rounded-lg"

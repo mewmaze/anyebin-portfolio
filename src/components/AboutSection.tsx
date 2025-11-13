@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function AboutSection() {
   return (
@@ -31,7 +32,13 @@ export default function AboutSection() {
               className="w-64 h-64 rounded-lg shadow-lg flex items-center justify-center text-6xl"
               style={{ backgroundColor: "#0ABAB5" }}
             >
-              <img src="/profile.svg" className="w-full" />
+              <Image
+                src="/profile.svg"
+                alt="프로필 이미지"
+                width={256}
+                height={256}
+                className="w-full"
+              />
             </div>
           </motion.div>
 

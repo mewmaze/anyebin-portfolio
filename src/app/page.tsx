@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { easeOut } from "framer-motion";
 import AboutSection from "@/components/AboutSection";
 import Skills from "@/components/Skills";
@@ -22,9 +22,6 @@ export default function Home() {
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } },
   };
-
-  const aboutY = useTransform(scrollYProgress, [0.05, 0.2], ["50%", "0%"]);
-  const aboutOpacity = useTransform(scrollYProgress, [0.05, 0.15], [0, 1]);
 
   return (
     <div className="relative">
