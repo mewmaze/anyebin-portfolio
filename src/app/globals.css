@@ -1,1 +1,23 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #f3f4f6;
+  color: #111827;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+@layer components {
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
