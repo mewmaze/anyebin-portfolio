@@ -26,36 +26,43 @@ export default function Home() {
   return (
     <div className="relative">
       {/* 메인 히어로 섹션 */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen px-6">
+      <section className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6">
         <motion.div
-          className="flex flex-col items-center max-w-3xl"
+          className="flex flex-col items-center max-w-3xl w-full"
           variants={containerVariants}
           initial="hidden"
           animate="show"
         >
           <motion.h1
-            className="text-6xl font-bold text-center leading-tight"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center leading-tight"
             variants={itemVariants}
             style={{ color: "#0ABAB5" }}
           >
             안예빈 포트폴리오
             <br />
-            <span className="text-gray-900">Frontend Developer</span>
+            <span className="text-gray-900 text-3xl sm:text-4xl lg:text-5xl">
+              Frontend Developer
+            </span>
           </motion.h1>
 
           <motion.p
-            className="mt-8 text-lg text-gray-600 text-center leading-relaxed"
+            className="mt-6 sm:mt-8 text-base sm:text-lg text-gray-600 text-center leading-relaxed max-w-2xl"
             variants={itemVariants}
           >
             React와 Next.js로 다양한 프로젝트를 개발해왔습니다.
-            <br />
-            사용자에게 즐거운 웹 경험을 제공하는 개발자를 꿈꿉니다.
+            <br className="sm:block" />
+            <span className="hidden sm:inline">
+              사용자에게 즐거운 웹 경험을 제공하는 개발자를 꿈꿉니다.
+            </span>
+            <span className="sm:hidden">
+              사용자에게 즐거운 경험을 주는 개발자를 꿈꿉니다.
+            </span>
           </motion.p>
 
           {/* CTA 버튼 */}
           <motion.button
             variants={itemVariants}
-            className="mt-10 px-8 py-3 rounded-lg font-semibold text-white transition-all hover:shadow-lg hover:scale-105"
+            className="mt-8 sm:mt-10 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold text-white text-sm sm:text-base transition-all hover:shadow-lg hover:scale-105"
             style={{ backgroundColor: "#0ABAB5" }}
             onClick={() => {
               const element = document.querySelector("#about");

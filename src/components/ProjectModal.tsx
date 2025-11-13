@@ -5,6 +5,7 @@ interface TroubleShooting {
   title: string;
   description: string;
 }
+
 export default function ProjectModal({
   project,
   isOpen,
@@ -32,12 +33,12 @@ export default function ProjectModal({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg max-w-3xl w-full max-h-[85vh] overflow-y-auto z-50"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto z-50 scroll-smooth"
             style={{ backgroundColor: "#faf8f3" }}
           >
             {/* 헤더 */}
             <div
-              className="sticky top-0 flex items-start justify-between p-8 border-b"
+              className="flex items-start justify-between p-8 border-b"
               style={{ borderColor: "#e5ddd5" }}
             >
               <div className="flex-1">
@@ -50,7 +51,7 @@ export default function ProjectModal({
               </div>
               <button
                 onClick={onClose}
-                className="text-gray-500 hover:text-gray-700 transition-colors text-2xl w-8 h-8 flex items-center justify-center"
+                className="text-gray-500 hover:text-gray-700 transition-colors text-2xl w-8 h-8 flex items-center justify-center flex-shrink-0"
               >
                 ✕
               </button>
