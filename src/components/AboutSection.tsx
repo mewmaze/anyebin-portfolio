@@ -9,7 +9,6 @@ export default function AboutSection() {
       style={{ backgroundColor: "#f0fffe" }}
     >
       <div className="max-w-4xl w-full">
-        {/* 제목 */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -29,15 +28,15 @@ export default function AboutSection() {
             className="flex justify-center"
           >
             <div
-              className="w-64 h-64 rounded-lg shadow-lg flex items-center justify-center text-6xl"
+              className="w-70 h-70 rounded-lg shadow-lg flex items-center justify-center text-6xl"
               style={{ backgroundColor: "#0ABAB5" }}
             >
               <Image
-                src="/profile.svg"
+                src="/profile.jpg"
                 alt="프로필 이미지"
                 width={256}
                 height={256}
-                className="w-full"
+                className="w-80%"
               />
             </div>
           </motion.div>

@@ -2,16 +2,24 @@
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import PreviewModal from "./PreviewModal";
 import { useState } from "react";
 import { projects, Project } from "@/constants/projects";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [previewProject, setPreviewProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const handleSelectProject = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
+  };
+
+  const handlePreview = (project: Project) => {
+    setPreviewProject(project);
+    setIsPreviewOpen(true);
   };
 
   return (
@@ -20,7 +28,6 @@ export default function Projects() {
       style={{ backgroundColor: "#faf8f3" }}
     >
       <div className="max-w-6xl w-full">
-        {/* 제목 */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +38,7 @@ export default function Projects() {
           Projects
         </motion.h2>
 
-        {/* 프로젝트 그리드 */}
+        {/* 프로젝트 내용 */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
           initial={{ opacity: 0 }}
@@ -48,6 +55,7 @@ export default function Projects() {
               <ProjectCard
                 project={project}
                 onClick={() => handleSelectProject(project)}
+                onPreview={() => handlePreview(project)}
               />
             </motion.div>
           ))}
@@ -57,6 +65,12 @@ export default function Projects() {
           project={selectedProject}
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
+        />
+        <PreviewModal
+          isOpen={isPreviewOpen}
+          onClose={() => setIsPreviewOpen(false)}
+          title={previewProject?.title || ""}
+          screenshots={previewProject?.screenshots || []}
         />
       </div>
     </section>

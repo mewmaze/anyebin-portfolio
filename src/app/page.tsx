@@ -26,7 +26,10 @@ export default function Home() {
   return (
     <div className="relative">
       {/* 메인 히어로 섹션 */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6">
+      <section
+        id="hero"
+        className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6"
+      >
         <motion.div
           className="flex flex-col items-center max-w-3xl w-full"
           variants={containerVariants}
@@ -59,10 +62,9 @@ export default function Home() {
             </span>
           </motion.p>
 
-          {/* CTA 버튼 */}
           <motion.button
             variants={itemVariants}
-            className="mt-8 sm:mt-10 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold text-white text-sm sm:text-base transition-all hover:shadow-lg hover:scale-105"
+            className="mt-8 sm:mt-10 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold text-white text-sm sm:text-base transition-all hover:shadow-lg hover:scale-105 cursor-pointer"
             style={{ backgroundColor: "#0ABAB5" }}
             onClick={() => {
               const element = document.querySelector("#about");
@@ -82,13 +84,13 @@ export default function Home() {
           <AboutSection />
         </motion.section>
 
-        <section id="skills">
+        <motion.section id="skills">
           <Skills />
-        </section>
+        </motion.section>
 
-        <section id="projects">
+        <motion.section id="projects">
           <Projects />
-        </section>
+        </motion.section>
       </div>
     </div>
   );

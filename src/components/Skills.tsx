@@ -1,84 +1,164 @@
 "use client";
-import { motion } from "framer-motion";
-import SkillCard from "./SkillCard";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Tag, Grid3x3 } from "lucide-react";
+import {
+  SkillCategory,
+  Skill,
+  DEFAULT_SKILLS,
+  skillsData,
+} from "@/constants/skills";
 
-const skillsData = [
-  {
-    icon: "⚛️",
-    title: "React",
-    details: ["Hooks & Context API", "상태 관리 패턴", "컴포넌트 재사용성"],
-  },
-  {
-    icon: "▲",
-    title: "Next.js",
-    details: ["Server Components", "SSR / SSG 최적화", "App Router"],
-  },
-  {
-    icon: "🔷",
-    title: "TypeScript",
-    details: ["타입 안전성", "제네릭 활용", "인터페이스 설계"],
-  },
-  {
-    icon: "🔄",
-    title: "상태 관리",
-    details: ["Zustand", "TanStack Query", "서버 상태 관리"],
-  },
-  {
-    icon: "🟢",
-    title: "Backend",
-    details: ["Node.js / Express", "MySQL 연동", "REST API"],
-  },
-  {
-    icon: "⚡",
-    title: "성능 최적화",
-    details: ["이미지 최적화", "무한 스크롤", "캐싱 전략"],
-  },
-];
-
-export default function Skills() {
+// 배지 보기 - 목록 형태
+function BadgeListView({ skillsData }: { skillsData: SkillCategory[] }) {
   return (
-    <section
-      className="min-h-screen flex items-center justify-center px-6 py-20"
-      style={{ backgroundColor: "#f0f4ff" }}
-    >
-      <div className="max-w-6xl w-full">
-        {/* 제목 */}
+    <div className="space-y-6">
+      {skillsData.map((category, index) => (
         <motion.div
+          key={index}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          <h2 className="text-4xl font-bold" style={{ color: "#1E40AF" }}>
-            Skills & Experience
-          </h2>
-          <p className="text-gray-600 mt-2">
-            다양한 프로젝트에서 경험한 기술들입니다
-          </p>
+          <h3
+            className="text-md font-bold uppercase tracking-widest mb-4"
+            style={{ color: "#1E40AF" }}
+          >
+            {category.category}
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {category.badges.map((badge) => (
+              <motion.div
+                key={badge.name}
+                whileHover={{ y: -2 }}
+                className="inline-block"
+              >
+                <img
+                  src={badge.url}
+                  alt={badge.name}
+                  title={badge.name}
+                  className="h-8 hover:opacity-80 transition-opacity"
+                />
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
+      ))}
+    </div>
+  );
+}
 
-        {/* 스킬 그리드 */}
+// 카드 보기 - 상세 정보 카드
+function CardDetailView({ skillsData }: { skillsData: Skill[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {skillsData.map((skill, index) => (
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          key={skill.title}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          whileHover={{ y: -4, scale: 1.01 }}
+          className="rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden border"
+          style={{
+            backgroundColor: "white",
+            borderColor: "#e0e7ff",
+          }}
         >
-          {skillsData.map((skill, index) => (
-            <motion.div
-              key={skill.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-            >
-              <SkillCard
-                icon={skill.icon}
-                title={skill.title}
-                details={skill.details}
-              />
-            </motion.div>
-          ))}
+          {/* 헤더 */}
+          <div className="px-4 py-3" style={{ backgroundColor: "#1E40AF" }}>
+            <h3 className="text-lg font-bold text-white">{skill.title}</h3>
+          </div>
+
+          {/* 상세 내용 */}
+          <div className="p-4">
+            <ul className="space-y-1.5">
+              {skill.details.map((detail, idx) => (
+                <li
+                  key={idx}
+                  className="text-gray-700 text-sm flex items-start"
+                >
+                  <span className="mr-2 font-bold" style={{ color: "#FFCB61" }}>
+                    ·
+                  </span>
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </motion.div>
+      ))}
+    </div>
+  );
+}
+
+// 메인 컴포넌트
+export default function SkillsSection() {
+  const [isDetailView, setIsDetailView] = useState(false);
+
+  return (
+    <section className="min-h-screen flex items-center justify-center px-6 py-20 bg-gradient-to-b from-[#f0f4ff] to-[#e8f0ff]">
+      <div className="max-w-6xl w-full">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-16 gap-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold"
+            style={{ color: "#1E40AF" }}
+          >
+            Skills
+          </motion.h2>
+
+          {/* 토글 버튼 */}
+          <div className="flex gap-2">
+            <motion.button
+              onClick={() => setIsDetailView(false)}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              className={`flex items-center justify-center w-12 h-12 cursor-pointer rounded-lg transition-all ${
+                !isDetailView
+                  ? "shadow-md text-white"
+                  : "border-2 text-gray-400 hover:text-gray-600"
+              }`}
+              style={{
+                backgroundColor: !isDetailView ? "#1E40AF" : "transparent",
+                borderColor: !isDetailView ? "#1E40AF" : "#cbd5e1",
+              }}
+              title="배지 보기"
+            >
+              <Tag size={20} />
+            </motion.button>
+
+            <motion.button
+              onClick={() => setIsDetailView(true)}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              className={`flex items-center justify-center w-12 h-12 cursor-pointer rounded-lg transition-all ${
+                isDetailView
+                  ? "shadow-md text-white"
+                  : "border-2 text-gray-400 hover:text-gray-600"
+              }`}
+              style={{
+                backgroundColor: isDetailView ? "#1E40AF" : "transparent",
+                borderColor: isDetailView ? "#1E40AF" : "#cbd5e1",
+              }}
+              title="상세 보기"
+            >
+              <Grid3x3 size={20} />
+            </motion.button>
+          </div>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {!isDetailView ? (
+            <BadgeListView skillsData={DEFAULT_SKILLS} />
+          ) : (
+            <CardDetailView skillsData={skillsData} />
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
