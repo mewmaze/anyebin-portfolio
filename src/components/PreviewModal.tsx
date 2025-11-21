@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 interface PreviewModalProps {
   isOpen: boolean;
@@ -17,14 +18,29 @@ export default function PreviewModal({
   screenshots,
 }: PreviewModalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set());
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // 모달이 열릴 때 인덱스를 0으로 리셋
   useEffect(() => {
     if (isOpen) {
       setCurrentIndex(0);
+      setImagesLoaded(new Set());
     }
   }, [isOpen]);
+
+  // 모달이 열릴 때 모든 이미지 미리 로드
+  useEffect(() => {
+    if (isOpen) {
+      screenshots.forEach((src, index) => {
+        const img = new window.Image();
+        img.src = src;
+        img.onload = () => {
+          setImagesLoaded((prev) => new Set(prev).add(index));
+        };
+      });
+    }
+  }, [isOpen, screenshots]);
 
   // 이미지가 바뀔 때마다 스크롤을 맨 위로
   useEffect(() => {
@@ -87,7 +103,7 @@ export default function PreviewModal({
           {/* 이미지 영역 */}
           <div
             ref={scrollContainerRef}
-            className="relative bg-gray-50 flex-1 overflow-auto"
+            className="relative bg-gray-50 flex-1 overflow-y-auto overflow-x-hidden"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -98,10 +114,27 @@ export default function PreviewModal({
                 transition={{ duration: 0.3 }}
                 className="relative min-h-full flex items-center justify-center p-8"
               >
+                {/* 로딩 표시 */}
+                {!imagesLoaded.has(currentIndex) && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div
+                      className="w-8 h-8 border-4 border-t-transparent rounded-full animate-spin"
+                      style={{
+                        borderColor: "#957C62",
+                        borderTopColor: "transparent",
+                      }}
+                    />
+                  </div>
+                )}
+
                 <img
                   src={screenshots[currentIndex]}
                   alt={`${title} 스크린샷 ${currentIndex + 1}`}
                   className="max-w-full h-auto object-contain rounded-lg shadow-lg"
+                  style={{
+                    opacity: imagesLoaded.has(currentIndex) ? 1 : 0,
+                    transition: "opacity 0.3s",
+                  }}
                 />
               </motion.div>
             </AnimatePresence>
