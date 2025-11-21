@@ -44,7 +44,10 @@ export default function ProjectModal({
               style={{ borderColor: "#e5ddd5" }}
             >
               <div className="flex-1">
-                <h2 className="text-3xl font-bold mb-2 text-gray-900">
+                <h2
+                  className="text-3xl font-bold mb-2 text-gray-900"
+                  style={{ color: "#957C62" }}
+                >
                   {project.title}
                 </h2>
                 <p className="text-sm text-gray-600">{project.period}</p>
@@ -204,22 +207,40 @@ export default function ProjectModal({
                 </div>
               )}
 
-              {/* 링크 */}
               <div className="flex gap-3 pt-4">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 py-2.5 px-4 rounded-lg font-medium text-sm text-center transition-all hover:opacity-80"
-                  style={{ backgroundColor: "#CBD2A4", color: "#3d3d3d" }}
-                >
-                  웹 사이트
-                </a>
+                {/* 웹사이트 링크 - GitHub과 다를 때만 표시 */}
+                {project.link !== project.github &&
+                  (project.isLinkDisabled ? (
+                    <button
+                      disabled
+                      className="flex-1 py-2.5 px-4 rounded-lg font-medium text-sm text-center cursor-not-allowed"
+                      style={{
+                        backgroundColor: "#e5e7eb",
+                        color: "#9ca3af",
+                      }}
+                    >
+                      복구중
+                    </button>
+                  ) : (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-2.5 px-4 rounded-lg font-medium text-sm text-center transition-all hover:opacity-80 cursor-pointer"
+                      style={{ backgroundColor: "#CBD2A4", color: "#3d3d3d" }}
+                    >
+                      웹 사이트
+                    </a>
+                  ))}
+
+                {/* GitHub 링크 */}
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 py-2.5 px-4 rounded-lg font-medium text-sm text-center border-2 transition-all hover:opacity-80"
+                  className={`${
+                    project.link !== project.github ? "flex-1" : "w-full"
+                  } py-2.5 px-4 rounded-lg font-medium text-sm text-center border-2 transition-all hover:opacity-80 cursor-pointer`}
                   style={{ borderColor: "#957C62", color: "#957C62" }}
                 >
                   GitHub

@@ -1,7 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface PreviewModalProps {
   isOpen: boolean;
@@ -17,6 +17,21 @@ export default function PreviewModal({
   screenshots,
 }: PreviewModalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // 모달이 열릴 때 인덱스를 0으로 리셋
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentIndex(0);
+    }
+  }, [isOpen]);
+
+  // 이미지가 바뀔 때마다 스크롤을 맨 위로
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [currentIndex]);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? screenshots.length - 1 : prev - 1));
@@ -50,22 +65,30 @@ export default function PreviewModal({
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", damping: 20 }}
-          className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden"
+          className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           {/* 헤더 */}
-          <div className="flex items-center justify-between p-6 border-b">
-            <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+          <div className="flex items-center justify-between p-6 border-b flex-shrink-0">
+            <h2
+              className="text-2xl font-bold text-gray-900"
+              style={{ color: "#957C62" }}
+            >
+              {title}
+            </h2>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
             >
               <X size={24} />
             </button>
           </div>
 
           {/* 이미지 영역 */}
-          <div className="relative bg-gray-50 flex items-center justify-center min-h-[500px]">
+          <div
+            ref={scrollContainerRef}
+            className="relative bg-gray-50 flex-1 overflow-auto"
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -73,12 +96,12 @@ export default function PreviewModal({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.3 }}
-                className="relative w-full h-full flex items-center justify-center p-8"
+                className="relative min-h-full flex items-center justify-center p-8"
               >
                 <img
                   src={screenshots[currentIndex]}
                   alt={`${title} 스크린샷 ${currentIndex + 1}`}
-                  className="max-w-full max-h-[600px] object-contain rounded-lg shadow-lg"
+                  className="max-w-full h-auto object-contain rounded-lg shadow-lg"
                 />
               </motion.div>
             </AnimatePresence>
@@ -88,14 +111,14 @@ export default function PreviewModal({
               <>
                 <button
                   onClick={handlePrevious}
-                  className="absolute left-4 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                  className="fixed left-8 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110 cursor-pointer z-10"
                   style={{ color: "#957C62" }}
                 >
                   <ChevronLeft size={28} />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="absolute right-4 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110"
+                  className="fixed right-8 top-1/2 -translate-y-1/2 p-3 bg-white/90 hover:bg-white rounded-full shadow-lg transition-all hover:scale-110 cursor-pointer z-10"
                   style={{ color: "#957C62" }}
                 >
                   <ChevronRight size={28} />
@@ -105,14 +128,14 @@ export default function PreviewModal({
           </div>
 
           {/* 하단 정보 */}
-          <div className="p-6 border-t bg-white">
+          <div className="p-6 border-t bg-white flex-shrink-0">
             <div className="flex items-center justify-between">
               <div className="flex gap-2">
                 {screenshots.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className="w-2 h-2 rounded-full transition-all"
+                    className="w-2 h-2 rounded-full transition-all cursor-pointer"
                     style={{
                       backgroundColor:
                         currentIndex === index ? "#957C62" : "#E5DDD5",
@@ -122,7 +145,10 @@ export default function PreviewModal({
               </div>
 
               {/* 페이지 번호 */}
-              <span className="text-sm text-gray-600">
+              <span
+                className="text-sm text-gray-600"
+                style={{ color: "#957C62" }}
+              >
                 {currentIndex + 1} / {screenshots.length}
               </span>
             </div>

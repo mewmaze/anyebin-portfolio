@@ -21,7 +21,7 @@ export default function ProjectCard({
       style={{ borderColor: "#E5DDD5" }}
     >
       <div className="p-6">
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-2 ">
           <div>
             <h3
               className="text-2xl font-bold mb-2"
@@ -38,11 +38,14 @@ export default function ProjectCard({
           </div>
         </div>
 
-        <p className="text-gray-700 mb-4 leading-relaxed">
+        <p
+          className="text-gray-700 mb-2 leading-relaxed font-bold"
+          style={{ color: "#957C62" }}
+        >
           {project.description}
         </p>
 
-        <div className="space-y-2 mb-4">
+        <div className="space-y-2 mb-6">
           {project.details.map((detail, index) => (
             <div key={index} className="flex items-start">
               <span
@@ -133,13 +136,24 @@ export default function ProjectCard({
             {project.link !== project.github && (
               <div className="relative flex flex-col items-center group">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => window.open(project.link, "_blank")}
-                  className="w-11 h-11 flex items-center justify-center rounded-lg border-2 transition-colors cursor-pointer"
+                  whileHover={!project.isLinkDisabled ? { scale: 1.05 } : {}}
+                  whileTap={!project.isLinkDisabled ? { scale: 0.95 } : {}}
+                  onClick={() =>
+                    !project.isLinkDisabled &&
+                    window.open(project.link, "_blank")
+                  }
+                  disabled={project.isLinkDisabled}
+                  className={`w-11 h-11 flex items-center justify-center rounded-lg border-2 transition-colors ${
+                    project.isLinkDisabled
+                      ? "cursor-not-allowed"
+                      : "cursor-pointer"
+                  }`}
                   style={{
-                    borderColor: "#E5DDD5",
-                    color: "#957C62",
+                    borderColor: project.isLinkDisabled ? "#e5e7eb" : "#E5DDD5",
+                    color: project.isLinkDisabled ? "#d1d5db" : "#957C62",
+                    backgroundColor: project.isLinkDisabled
+                      ? "#f9fafb"
+                      : "transparent",
                   }}
                 >
                   <Globe size={20} />
@@ -147,9 +161,13 @@ export default function ProjectCard({
 
                 <span
                   className="absolute bottom-full mb-2 px-3 py-1 rounded-md text-xs text-white whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                  style={{ backgroundColor: "#CBD2A4" }}
+                  style={{
+                    backgroundColor: project.isLinkDisabled
+                      ? "#9ca3af"
+                      : "#CBD2A4",
+                  }}
                 >
-                  웹사이트
+                  {project.isLinkDisabled ? "복구중" : "웹사이트"}
                 </span>
               </div>
             )}

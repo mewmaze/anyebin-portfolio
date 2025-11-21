@@ -25,7 +25,6 @@ export default function Home() {
 
   return (
     <div className="relative">
-      {/* 메인 히어로 섹션 */}
       <section
         id="hero"
         className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6"
@@ -92,6 +91,17 @@ export default function Home() {
           <Projects />
         </motion.section>
       </div>
+
+      <footer
+        className="py-6 text-center text-sm border-t"
+        style={{
+          backgroundColor: "#f3ede5",
+          borderColor: "#E5DDD5",
+          color: "#957C62",
+        }}
+      >
+        © 2025 Yebin An. All rights reserved.
+      </footer>
     </div>
   );
 }
