@@ -13,73 +13,115 @@ export default function AboutSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-16"
+          className="text-4xl font-bold mb-10"
           style={{ color: "#0ABAB5" }}
         >
           About me
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* 왼쪽: 프로필 이미지 */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="flex justify-center"
-          >
-            <div
-              className="w-70 h-70 rounded-lg shadow-lg flex items-center justify-center text-6xl"
-              style={{ backgroundColor: "#0ABAB5" }}
-            >
-              <Image
-                src="/profile.jpg"
-                alt="프로필 이미지"
-                width={256}
-                height={256}
-                className="w-80% "
-              />
-            </div>
-          </motion.div>
-
-          {/* 오른쪽: 정보 */}
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-20">
+          {/* 왼쪽: 기본 프로필 */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div>
+            <div className="space-y-2">
               <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                 이름
               </p>
-              <p className="text-2xl font-bold text-gray-900">안예빈</p>
+              <p className="text-base md:text-lg font-semibold text-gray-900">
+                안예빈
+              </p>
             </div>
 
-            <div>
+            <div className="grid grid-cols-[auto,1fr] gap-x-4 gap-y-2 text-sm md:text-base">
+              <p className="font-semibold text-gray-500">생년월일</p>
+              <p className="text-base md:text-lg font-semibold text-gray-900">1999.01.08</p>
+
+              <p className="font-semibold text-gray-500">이메일</p>
+              <p className="text-base md:text-lg font-semibold text-gray-900 break-all">
+                aybin0108@email.com
+              </p>
+
+              <p className="font-semibold text-gray-500">학력</p>
+              <div>
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-base md:text-lg font-semibold text-gray-900">
+                    전북대학교 전자공학과&nbsp;졸업
+                  </p>
+                  <p className="text-xs font-medium text-teal-500">
+                    2022.03 - 2024.02
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* 오른쪽: 수료 / 자격증 / 경력 */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <div className="space-y-2">
               <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                생년월일
+                수료
               </p>
-              <p className="text-lg text-gray-700">1999.01.08</p>
+              <div className="flex items-baseline justify-between gap-4">
+                <p className="text-base md:text-lg font-semibold text-gray-900">
+                  멀티캠퍼스 프론트엔드 부트캠프
+                </p>
+                <p className="text-xs font-medium text-teal-500">
+                  2024.03 - 2024.08
+                </p>
+              </div>
             </div>
 
-            <div>
+            <div className="space-y-2">
               <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                이메일
+                자격증
               </p>
-              <p className="text-lg text-gray-700">aybin0108@email.com</p>
+              <ul className="space-y-1 text-sm md:text-base">
+                <li className="flex items-baseline justify-between gap-2">
+                  <span className="text-base md:text-lg font-semibold text-gray-900">
+                    정보처리기사
+                  </span>
+                  <span className="text-xs font-medium text-teal-500">
+                    2025.03
+                  </span>
+                </li>
+                <li className="flex items-baseline justify-between gap-2">
+                  <span className="text-base md:text-lg font-semibold text-gray-900">
+                    SQLD 개발자
+                  </span>
+                  <span className="text-xs font-medium text-teal-500">
+                    2025.06
+                  </span>
+                </li>
+              </ul>
             </div>
 
-            <div>
+            <div className="space-y-2">
               <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                학력
+                경력
               </p>
-              <p className="text-lg text-gray-700">
-                전북대학교 전자공학과 <span className="text-sm">졸업</span>
-              </p>
+              <div>
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="text-base md:text-lg font-semibold text-gray-900">
+                    코리아런드리 인턴
+                  </p>
+                  <p className="text-xs font-medium text-teal-500">
+                    2025.07 - 2025.10
+                  </p>
+                </div>
+              </div>
             </div>
-
-            {/* 소개 텍스트 */}
-            <div className="pt-6 border-t border-gray-200 flex gap-4">
+          </motion.div>
+        </div>
+        <div className="pt-6 border-t border-gray-200 flex gap-4">
               <a
                 href="/resume.pdf"
                 target="_blank"
@@ -119,8 +161,6 @@ export default function AboutSection() {
                 </svg>
               </a>
             </div>
-          </motion.div>
-        </div>
       </div>
     </section>
   );
