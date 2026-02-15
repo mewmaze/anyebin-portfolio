@@ -334,4 +334,4 @@ export const projects = [
   },
 ];
 
-export type Project = (typeof projects)[number];
+export type Project = (typeof projects)[number] & Partial<Pick<ProjectBase, "isLinkDisabled">>;
