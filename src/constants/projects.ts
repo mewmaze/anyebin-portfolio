@@ -169,11 +169,11 @@ export const projects = [
       {
         title: "Server Component 전환을 통한 초기 로딩 최적화",
         problem:
-          "trips 페이지가 클라이언트 컴포넌트로 구현되어 있어 페이지 진입 시 JavaScript 로드 → 컴포넌트 마운트 → useEffect에서 데이터 요청 → 렌더링 순서로 동작했습니다. 이 과정에서 사용자는 2~3초간 빈 화면을 보게 되었고, 로딩 스켈레톤을 표시하더라도 체감 속도가 느렸습니다.",
+          "trips 페이지가 클라이언트 컴포넌트로 구현되어 있어 페이지 진입 시 JavaScript 로드 → 컴포넌트 마운트 → useEffect에서 데이터 요청 → 렌더링 순서로 동작했습니다. 이 과정에서 사용자는 2~3초간 빈 화면을 보게 되었고 로딩 스켈레톤을 표시하더라도 체감 속도가 느렸습니다.",
         solution:
-          "page.tsx를 async Server Component로 전환하여 서버에서 미리 Supabase 데이터를 조회하도록 변경했습니다. 라우터 이동이나 버튼 클릭 같은 상호작용이 필요한 부분만 TripsContent라는 별도의 Client Component로 분리하고, 서버에서 가져온 데이터를 props로 전달하는 구조로 리팩토링했습니다.",
+          "page.tsx를 async Server Component로 전환하여 서버에서 미리 데이터를 조회하도록 변경했습니다. 라우터 이동이나 버튼 클릭 같은 상호작용이 필요한 부분만 별도의 Client Component로 분리하고 서버에서 가져온 데이터를 props로 전달하는 구조로 리팩토링했습니다.",
         result:
-          "서버에서 데이터가 포함된 완성된 HTML을 전달하므로 페이지 진입 시 즉시 콘텐츠가 표시되어 초기 로딩 속도가 크게 개선되었습니다. useState, useEffect, 로딩 상태 관리 등 클라이언트 코드가 제거되어 컴포넌트가 단순해지고 JavaScript 번들 크기도 줄어들었습니다.",
+          "서버에서 데이터가 포함된 완성된 HTML을 전달하므로 페이지 진입 시 즉시 콘텐츠가 표시되어 초기 로딩 속도가 크게 개선되었습니다. useState, useEffect, 로딩 상태 관리 등 클라이언트 코드를 제거하여 JavaScript 번들 크기도 줄어들었습니다.",
       },
       {
         title: "환율 API 호출 최적화 및 보안 강화",
@@ -334,4 +334,5 @@ export const projects = [
   },
 ];
 
-export type Project = (typeof projects)[number] & Partial<Pick<ProjectBase, "isLinkDisabled">>;
+export type Project = (typeof projects)[number] &
+  Partial<Pick<ProjectBase, "isLinkDisabled">>;
