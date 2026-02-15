@@ -68,6 +68,7 @@ export const projects = [
           "**Axios 인터셉터**를 통한 **JWT** 자동 관리",
           "모든 요청 시 **access token 자동 추가**",
           "응답 **401 에러** 발생 시 **refresh token**으로 **token 재발급** 시도",
+          "**Token Refresh Queue 패턴** 적용 - 동시 다발 401 발생 시 첫 요청만 /reissue 호출, 나머지는 큐에 대기시켜 중복 리프레시 방지",
           "재발급 실패 시 강제 로그아웃 처리 (**무한 루프 방지**)",
         ],
       },
@@ -198,14 +199,15 @@ export const projects = [
     id: "healthconnect",
     title: "HealthConnect",
     period: "2024.06 ~ 2024.08",
-    team: "3인 (프론트, 백엔드, 기능별 구현) • 기여도 60%",
-    role: "UI/UX 디자인, 챌린지 기능, 메인 페이지",
+    team: "3인 (프론트, 백엔드, 기능별 구현) • 기여도 70%",
+    role: "UI/UX 디자인, 챌린지 기능, 메인 페이지, 배포",
     tech: ["React", "JavaScript", "Node.js", "MySQL", "MUI"] as const,
     description: "운동 챌린지 커뮤니티",
     details: [
       "챌린지 정보 시각화 (달력 기반)",
       "시간대 동기화 (UTC ↔ Local)",
       "DB 설계 및 API 개발",
+      "AWS 기반 배포 인프라 구축",
     ],
     implementedFeatures: [
       {
@@ -230,6 +232,16 @@ export const projects = [
           "테이블 간 관계를 명확히 정의하여 데이터 흐름 구조화",
           "**Express.js** 기반 **RESTful API** 서버 구현 (라우터 분리로 유지보수성 향상)",
           "**multer 미들웨어**를 사용하여 사용자 파일 업로드 처리 및 관리",
+        ],
+      },
+      {
+        title: "배포 인프라 구축",
+        items: [
+          "**프론트엔드**: Vercel에 React 앱 배포",
+          "**백엔드**: AWS EC2에 Node.js 서버 배포 및 **PM2**로 프로세스 관리",
+          "**AWS RDS MySQL** 데이터베이스 연동 및 보안 그룹 설정",
+          "**CloudFront**를 활용해 HTTP 백엔드를 HTTPS로 래핑하여 Mixed Content 보안 이슈 해결",
+          "**GitHub Actions**로 CI/CD 파이프라인 구축 (배포 자동화로 시간 단축)",
         ],
       },
     ] as const satisfies readonly DetailSection[],
