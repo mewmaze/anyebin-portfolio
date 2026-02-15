@@ -167,22 +167,22 @@ export const projects = [
     ] as const satisfies readonly DetailSection[],
     troubleshooting: [
       {
-        title: "환율 API 캐싱 및 성능 최적화",
+        title: "Server Component 전환을 통한 초기 로딩 최적화",
         problem:
-          "국가 선택 시마다 환율 API가 반복 호출되어 불필요한 네트워크 지연이 발생함.",
+          "trips 페이지가 클라이언트 컴포넌트로 구현되어 있어 페이지 진입 시 JavaScript 로드 → 컴포넌트 마운트 → useEffect에서 데이터 요청 → 렌더링 순서로 동작했습니다. 이 과정에서 사용자는 2~3초간 빈 화면을 보게 되었고, 로딩 스켈레톤을 표시하더라도 체감 속도가 느렸습니다.",
         solution:
-          "useCallback으로 환율 계산 함수를 메모이제이션하고 환율 데이터를 상태에 캐싱하여 재계산을 최소화함.",
+          "page.tsx를 async Server Component로 전환하여 서버에서 미리 Supabase 데이터를 조회하도록 변경했습니다. 라우터 이동이나 버튼 클릭 같은 상호작용이 필요한 부분만 TripsContent라는 별도의 Client Component로 분리하고, 서버에서 가져온 데이터를 props로 전달하는 구조로 리팩토링했습니다.",
         result:
-          "API 호출 횟수가 줄어 초기 렌더링 성능이 개선되고 전반적인 사용자 경험이 향상됨.",
+          "서버에서 데이터가 포함된 완성된 HTML을 전달하므로 페이지 진입 시 즉시 콘텐츠가 표시되어 초기 로딩 속도가 크게 개선되었습니다. useState, useEffect, 로딩 상태 관리 등 클라이언트 코드가 제거되어 컴포넌트가 단순해지고 JavaScript 번들 크기도 줄어들었습니다.",
       },
       {
-        title: "폼 검증 오류 메시지 처리",
+        title: "환율 API 호출 최적화 및 보안 강화",
         problem:
-          "잘못된 입력값 제출 시 사용자에게 적절한 피드백이 제공되지 않아 폼 사용성이 저하됨.",
+          "클라이언트에서 직접 환율 API를 호출하면 API 키가 브라우저에 노출되는 보안 문제가 있었고, 국가 선택 시마다 반복 호출되어 불필요한 네트워크 요청이 발생했습니다.",
         solution:
-          "Zod 스키마로 런타임 검증을 수행하고 React Hook Form과 연동해 각 필드별 오류 메시지를 실시간으로 표시함.",
+          "환율 데이터를 가져오는 로직을 Server Action으로 분리하여 API 키를 서버에서만 관리하도록 했습니다. 또한 useCallback으로 환율 계산 함수를 메모이제이션하고, 컴포넌트 상태로 환율 데이터를 관리하여 동일한 통화에 대한 재호출을 방지했습니다.",
         result:
-          "사용자가 제출 전에 입력 오류를 명확히 인지하고 수정할 수 있어 폼 사용성이 향상됨.",
+          "API 키가 클라이언트에 노출되지 않아 보안이 강화되었고, 불필요한 API 재호출이 줄어 사용자 경험이 개선되었습니다.",
       },
     ] as const satisfies readonly TroubleShooting[],
     link: "https://traveloper.vercel.app",
@@ -201,7 +201,17 @@ export const projects = [
     period: "2024.06 ~ 2024.08",
     team: "3인 (프론트, 백엔드, 기능별 구현) • 기여도 70%",
     role: "UI/UX 디자인, 챌린지 기능, 메인 페이지, 배포",
-    tech: ["React", "JavaScript", "Node.js", "MySQL", "MUI"] as const,
+    tech: [
+      "React",
+      "JavaScript",
+      "Node.js",
+      "MySQL",
+      "MUI",
+      "AWS (EC2, RDS, CloudFront)",
+      "Vercel",
+      "GitHub Actions",
+      "PM2",
+    ] as const,
     description: "운동 챌린지 커뮤니티",
     details: [
       "챌린지 정보 시각화 (달력 기반)",

@@ -75,11 +75,23 @@ export const DEFAULT_SKILLS: SkillCategory[] = [
     ],
   },
   {
-    category: "Database",
+    category: "Deployment",
     badges: [
       {
-        name: "Supabase",
-        url: "https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white",
+        name: "AWS",
+        url: "https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white",
+      },
+      {
+        name: "Vercel",
+        url: "https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white",
+      },
+      {
+        name: "GitHub Actions",
+        url: "https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white",
+      },
+      {
+        name: "PM2",
+        url: "https://img.shields.io/badge/PM2-2B037A?style=for-the-badge&logo=pm2&logoColor=white",
       },
     ],
   },
@@ -89,14 +101,6 @@ export const DEFAULT_SKILLS: SkillCategory[] = [
       {
         name: "GitHub",
         url: "https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white",
-      },
-      {
-        name: "Vercel",
-        url: "https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white",
-      },
-      {
-        name: "AWS",
-        url: "https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white",
       },
       {
         name: "Figma",
@@ -140,6 +144,15 @@ export const skillsData: Skill[] = [
       "Node.js · Express로 REST API 설계",
       "MySQL 연동 및 DB 모델링",
       "클라이언트–서버 통신 구조 이해",
+    ],
+  },
+  {
+    title: "Deployment",
+    details: [
+      "AWS (EC2, RDS, CloudFront) 인프라 구축",
+      "GitHub Actions 기반 CI/CD 파이프라인 구축",
+      "PM2로 프로세스 관리",
+      "Vercel을 통한 프론트엔드 배포",
     ],
   },
   {
