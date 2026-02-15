@@ -108,7 +108,6 @@ export const projects = [
     ] as const satisfies readonly TroubleShooting[],
     link: "https://findmymeme.online",
     github: "https://github.com/AhnSeene/find-my-meme-frontend",
-    isLinkDisabled: true,
     image: "/findmymeme.png",
     screenshots: [
       "/projects/findmymeme/main.png",
