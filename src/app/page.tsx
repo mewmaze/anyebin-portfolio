@@ -35,8 +35,9 @@ export default function Home() {
         <meta property="og:image" content="/portfolio_img.png" />
         <meta
           property="og:url"
-          content="https://healthconnect-web.vercel.app"
+          content="https://anyebin-portfolio.vercel.app/"
         />
+        <meta property="og:type" content="website" />
       </Head>
       <main>
         <div className="relative">
