@@ -82,142 +82,160 @@ export default function AboutSection() {
                 animate={{ rotateY: isHovered ? 180 : 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               >
-              {/* 앞면: 경력 / 수료 / 자격증 요약 */}
-              <div className="backface-hidden space-y-6 bg-white rounded-xl shadow-sm p-6 w-full">
-                <div className="space-y-2">
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                    경력
-                  </p>
-                  <div>
+                {/* 앞면: 경력 / 수료 / 자격증 요약 */}
+                <div className="backface-hidden space-y-6 bg-white rounded-xl shadow-sm p-6 w-full">
+                  <div className="space-y-2">
+                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                      경력
+                    </p>
+                    <div>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <p className="text-base md:text-lg font-semibold text-gray-900">
+                          코리아런드리 인턴
+                        </p>
+                        <p className="text-xs font-medium text-teal-500">
+                          2025.07 - 2025.10
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                      수료
+                    </p>
                     <div className="flex items-baseline justify-between gap-4">
                       <p className="text-base md:text-lg font-semibold text-gray-900">
-                        코리아런드리 인턴
+                        멀티캠퍼스 프론트엔드 부트캠프
                       </p>
                       <p className="text-xs font-medium text-teal-500">
-                        2025.07 - 2025.10
+                        2024.03 - 2024.08
                       </p>
                     </div>
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                    수료
-                  </p>
-                  <div className="flex items-baseline justify-between gap-4">
-                    <p className="text-base md:text-lg font-semibold text-gray-900">
-                      멀티캠퍼스 프론트엔드 부트캠프
-                    </p>
-                    <p className="text-xs font-medium text-teal-500">
-                      2024.03 - 2024.08
-                    </p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                    자격증
-                  </p>
-                  <ul className="space-y-1 text-sm md:text-base">
-                    <li className="flex items-baseline justify-between gap-2">
-                      <span className="text-base md:text-lg font-semibold text-gray-900">
-                        정보처리기사
-                      </span>
-                      <span className="text-xs font-medium text-teal-500">
-                        2025.03
-                      </span>
-                    </li>
-                    <li className="flex items-baseline justify-between gap-2">
-                      <span className="text-base md:text-lg font-semibold text-gray-900">
-                        SQLD 개발자
-                      </span>
-                      <span className="text-xs font-medium text-teal-500">
-                        2025.06
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-                <motion.p
-                  className="text-xs text-center text-gray-400 pt-2"
-                  animate={{ opacity: [1, 0.3, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  카드를 뒤집어 상세 업무를 확인하세요
-                </motion.p>
-              </div>
-
-              {/* 뒷면: 코리아런드리 인턴 상세 */}
-              <div
-                className="backface-hidden absolute inset-0 bg-white rounded-xl shadow-sm p-6 w-full overflow-y-auto"
-                style={{ transform: "rotateY(180deg)" }}
-              >
-                <div className="space-y-4">
-                  <div>
-                    <div className="flex items-baseline justify-between gap-4">
-                      <p className="text-base md:text-lg font-bold text-gray-900">
-                        코리아런드리 인턴
-                      </p>
-                      <p className="text-xs font-medium text-teal-500">
-                        2025.07 - 2025.10
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-1">
+                  <div className="space-y-2">
                     <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                      기술스택
+                      자격증
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {["React.js", "JavaScript", "MUI"].map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-0.5 text-xs font-medium rounded-full"
-                          style={{
-                            backgroundColor: "#e6fffe",
-                            color: "#0ABAB5",
-                          }}
-                        >
-                          {tech}
+                    <ul className="space-y-1 text-sm md:text-base">
+                      <li className="flex items-baseline justify-between gap-2">
+                        <span className="text-base md:text-lg font-semibold text-gray-900">
+                          정보처리기사
                         </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                      담당 업무
-                    </p>
-                    <ul className="space-y-1 text-sm text-gray-700 leading-relaxed">
-                      <li className="flex gap-1.5">
-                        <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
-                        점주용 광고 슬롯 생성/수정 기능 개발
+                        <span className="text-xs font-medium text-teal-500">
+                          2025.03
+                        </span>
                       </li>
-                      <li className="flex gap-1.5">
-                        <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
-                        페이지별 권한 분리 및 접근 제어 구현
-                      </li>
-                      <li className="flex gap-1.5">
-                        <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
-                        테이블 UI 개선 (전체 선택, 페이지네이션)
-                      </li>
-                      <li className="flex gap-1.5">
-                        <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
-                        네비게이션 및 Breadcrumb 로직 개선
-                      </li>
-                      <li className="flex gap-1.5">
-                        <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
-                        사용자 인증 상태 관리 개선 (useReducer)
-                      </li>
-                      <li className="flex gap-1.5">
-                        <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
-                        9건의 버그 수정 및 코드 리뷰 참여
-                      </li>
-                      <li className="flex gap-1.5">
-                        <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
-                        Jira, Slack, GitHub 기반 실무 협업
+                      <li className="flex items-baseline justify-between gap-2">
+                        <span className="text-base md:text-lg font-semibold text-gray-900">
+                          SQLD 개발자
+                        </span>
+                        <span className="text-xs font-medium text-teal-500">
+                          2025.06
+                        </span>
                       </li>
                     </ul>
                   </div>
+                  <motion.p
+                    className="text-xs text-center text-gray-400 pt-2"
+                    animate={{ opacity: [1, 0.3, 1] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    카드를 뒤집어 상세 내용을 확인하세요
+                  </motion.p>
                 </div>
-              </div>
+
+                {/* 뒷면: 코리아런드리 인턴 상세 */}
+                <div
+                  className="backface-hidden absolute inset-0 bg-white rounded-xl shadow-sm p-6 w-full overflow-y-auto"
+                  style={{ transform: "rotateY(180deg)" }}
+                >
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-baseline justify-between gap-4">
+                        <p className="text-base md:text-lg font-bold text-gray-900">
+                          코리아런드리 인턴
+                        </p>
+                        <p className="text-xs font-medium text-teal-500">
+                          2025.07 - 2025.10
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                        기술스택
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {["React.js", "JavaScript", "MUI"].map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2.5 py-0.5 text-xs font-medium rounded-full"
+                            style={{
+                              backgroundColor: "#e6fffe",
+                              color: "#0ABAB5",
+                            }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                        담당 업무
+                      </p>
+                      <ul className="space-y-1 text-sm text-gray-700 leading-relaxed">
+                        <li className="flex gap-1.5">
+                          <span className="text-teal-500 mt-0.5 shrink-0">
+                            &#8226;
+                          </span>
+                          점주용 광고 슬롯 생성/수정 기능 개발
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="text-teal-500 mt-0.5 shrink-0">
+                            &#8226;
+                          </span>
+                          페이지별 권한 분리 및 접근 제어 구현
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="text-teal-500 mt-0.5 shrink-0">
+                            &#8226;
+                          </span>
+                          테이블 UI 개선 (전체 선택, 페이지네이션)
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="text-teal-500 mt-0.5 shrink-0">
+                            &#8226;
+                          </span>
+                          네비게이션 및 Breadcrumb 로직 개선
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="text-teal-500 mt-0.5 shrink-0">
+                            &#8226;
+                          </span>
+                          사용자 인증 상태 관리 개선 (useReducer)
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="text-teal-500 mt-0.5 shrink-0">
+                            &#8226;
+                          </span>
+                          9건의 버그 수정 및 코드 리뷰 참여
+                        </li>
+                        <li className="flex gap-1.5">
+                          <span className="text-teal-500 mt-0.5 shrink-0">
+                            &#8226;
+                          </span>
+                          Jira, Slack, GitHub 기반 실무 협업
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </motion.div>
