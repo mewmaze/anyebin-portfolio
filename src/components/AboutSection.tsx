@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 export default function AboutSection() {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <section
@@ -73,13 +73,12 @@ export default function AboutSection() {
             <div
               className="relative cursor-pointer"
               style={{ perspective: "1000px" }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onClick={() => setIsFlipped((prev) => !prev)}
             >
               <motion.div
                 className="preserve-3d relative w-full"
                 initial={false}
-                animate={{ rotateY: isHovered ? 180 : 0 }}
+                animate={{ rotateY: isFlipped ? 180 : 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               >
                 {/* 앞면: 경력 / 수료 / 자격증 요약 */}
@@ -144,7 +143,7 @@ export default function AboutSection() {
                       ease: "easeInOut",
                     }}
                   >
-                    카드를 뒤집어 상세 내용을 확인하세요
+                    클릭하여 상세 내용을 확인하세요
                   </motion.p>
                 </div>
 
