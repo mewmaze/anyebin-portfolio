@@ -275,7 +275,7 @@ export const projects = [
           "로컬 반응성과 서버 데이터의 일관성을 모두 확보하여 안정적인 상태 동기화 구조를 구현함.",
       },
     ] as const satisfies readonly TroubleShooting[],
-    link: "https://health-connect-psi-blush.vercel.app/",
+    link: "https://healthconnect-web.vercel.app/",
     github: "https://github.com/mewmaze/HealthConnect",
     image: "/healthconnect.png",
     screenshots: [
