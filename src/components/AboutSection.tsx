@@ -132,6 +132,14 @@ export default function AboutSection() {
                           2025.06
                         </span>
                       </li>
+                      <li className="flex items-baseline justify-between gap-2">
+                        <span className="text-base md:text-lg font-semibold text-gray-900">
+                          TOEIC Speaking IH (140)
+                        </span>
+                        <span className="text-xs font-medium text-teal-500">
+                          2026.02
+                        </span>
+                      </li>
                     </ul>
                   </div>
                   <motion.p
