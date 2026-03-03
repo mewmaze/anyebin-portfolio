@@ -2,6 +2,7 @@
 interface DetailSection {
   title: string;
   items: readonly string[];
+  image?: string;
 }
 
 interface TroubleShooting {
@@ -253,6 +254,7 @@ export const projects = [
           "**CloudFront**를 활용해 HTTP 백엔드를 HTTPS로 래핑하여 Mixed Content 보안 이슈 해결",
           "**GitHub Actions**로 CI/CD 파이프라인 구축 (배포 자동화로 시간 단축)",
         ],
+        image: "/projects/healthconnect/diagram.png",
       },
     ] as const satisfies readonly DetailSection[],
     troubleshooting: [

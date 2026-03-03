@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/constants/projects";
 
@@ -17,12 +18,16 @@ export default function ProjectModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
   return (
+    <>
     <AnimatePresence>
       {isOpen && project && (
         <>
           {/* 백드롭 */}
           <motion.div
+            key="backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -32,6 +37,7 @@ export default function ProjectModal({
 
           {/* 모달 */}
           <motion.div
+            key="modal"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -145,6 +151,20 @@ export default function ProjectModal({
                             </li>
                           ))}
                         </ul>
+                        {section.image && (
+                          <div className="mt-3">
+                            <img
+                              src={section.image}
+                              alt={section.title}
+                              className="w-full rounded-lg border cursor-zoom-in object-contain max-h-64 hover:opacity-90 transition-opacity"
+                              style={{ borderColor: "#e5ddd5" }}
+                              onClick={() => setZoomedImage(section.image!)}
+                            />
+                            <p className="text-xs text-gray-400 mt-1 text-center">
+                              클릭하여 확대
+                            </p>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -251,5 +271,35 @@ export default function ProjectModal({
         </>
       )}
     </AnimatePresence>
+
+    {/* 이미지 확대 오버레이 */}
+    <AnimatePresence>
+      {zoomedImage && (
+        <motion.div
+          key="zoom-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setZoomedImage(null)}
+        >
+          <motion.img
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            src={zoomedImage}
+            alt="확대 이미지"
+            className="max-w-full max-h-full rounded-lg object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            className="absolute top-4 right-4 text-white text-3xl w-10 h-10 flex items-center justify-center hover:text-gray-300 transition-colors"
+            onClick={() => setZoomedImage(null)}
+          >
+            ✕
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
