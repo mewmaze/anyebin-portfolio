@@ -1,5 +1,5 @@
 // constants/projects.ts
-interface DetailSection {
+export interface DetailSection {
   title: string;
   items: readonly string[];
   image?: string;

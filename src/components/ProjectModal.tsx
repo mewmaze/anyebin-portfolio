@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Project } from "@/constants/projects";
+import { Project, DetailSection } from "@/constants/projects";
 
 interface TroubleShooting {
   title: string;
@@ -124,7 +124,7 @@ export default function ProjectModal({
                     내가 구현한 기능
                   </h3>
                   <div className="space-y-4">
-                    {project.implementedFeatures.map((section, idx: number) => (
+                    {project.implementedFeatures.map((section: DetailSection, idx: number) => (
                       <div key={idx} className="mb-4">
                         <h4 className="font-semibold text-gray-900 mb-2 text-sm">
                           {section.title}
