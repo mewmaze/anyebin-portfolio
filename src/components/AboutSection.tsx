@@ -172,12 +172,16 @@ export default function AboutSection() {
                       </div>
                     </div>
 
+                    <p className="text-sm text-gray-500">
+                      운영 중인 점주용 어드민 서비스 유지보수 및 기능 개발
+                    </p>
+
                     <div className="space-y-1">
                       <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                         기술스택
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {["React.js", "JavaScript", "MUI"].map((tech) => (
+                        {["React.js", "JavaScript", "MUI", "Redux"].map((tech) => (
                           <span
                             key={tech}
                             className="px-2.5 py-0.5 text-xs font-medium rounded-full"
@@ -196,48 +200,54 @@ export default function AboutSection() {
                       <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                         담당 업무
                       </p>
-                      <ul className="space-y-1 text-sm text-gray-700 leading-relaxed">
-                        <li className="flex gap-1.5">
-                          <span className="text-teal-500 mt-0.5 shrink-0">
-                            &#8226;
-                          </span>
-                          점주용 광고 슬롯 생성/수정 기능 개발
+                      <ul className="space-y-2 text-sm text-gray-700 leading-relaxed">
+                        <li>
+                          <div className="flex gap-1.5">
+                            <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
+                            <span className="font-medium">광고 슬롯 생성 기능 신규 개발</span>
+                          </div>
+                          <ul className="mt-1 ml-4 space-y-0.5 text-sm text-gray-500">
+                            <li className="flex gap-1.5">
+                              <span className="shrink-0">–</span>
+                              생성 페이지/폼 구현 (React Hook Form + Yup, 확인 모달, 스낵바 알림)
+                            </li>
+                            <li className="flex gap-1.5">
+                              <span className="shrink-0">–</span>
+                              기존 권한 체계에 포함되지 않는 광고 기능의 권한 조회 방식을 별도 설계하여 적용
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div className="flex gap-1.5">
+                            <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
+                            <span className="font-medium">페이지네이션 테이블 전체 선택 버그 수정</span>
+                          </div>
+                          <ul className="mt-1 ml-4 space-y-0.5 text-sm text-gray-500">
+                            <li className="flex gap-1.5">
+                              <span className="shrink-0">–</span>
+                              페이지 전환 시 선택이 초기화되는 근본 원인 분석 후, 선택 상태 관리 로직을 페이지 단위로 재설계하여 누적 선택 지원
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div className="flex gap-1.5">
+                            <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
+                            <span className="font-medium">비동기 권한 로딩 전 UI 깜빡임 해결</span>
+                          </div>
+                          <ul className="mt-1 ml-4 space-y-0.5 text-sm text-gray-500">
+                            <li className="flex gap-1.5">
+                              <span className="shrink-0">–</span>
+                              상태 초기값 설계로 해결 (미로딩 / 미권한 / 권한 3상태 분리)
+                            </li>
+                          </ul>
                         </li>
                         <li className="flex gap-1.5">
-                          <span className="text-teal-500 mt-0.5 shrink-0">
-                            &#8226;
-                          </span>
-                          페이지별 권한 분리 및 접근 제어 구현
+                          <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
+                          네비게이션 활성화 로직 개선, Breadcrumb 경로 정비, 스켈레톤 colSpan 정합 등 UI 일관성 개선
                         </li>
                         <li className="flex gap-1.5">
-                          <span className="text-teal-500 mt-0.5 shrink-0">
-                            &#8226;
-                          </span>
-                          테이블 UI 개선 (전체 선택, 페이지네이션)
-                        </li>
-                        <li className="flex gap-1.5">
-                          <span className="text-teal-500 mt-0.5 shrink-0">
-                            &#8226;
-                          </span>
-                          네비게이션 및 Breadcrumb 로직 개선
-                        </li>
-                        <li className="flex gap-1.5">
-                          <span className="text-teal-500 mt-0.5 shrink-0">
-                            &#8226;
-                          </span>
-                          사용자 인증 상태 관리 개선 (useReducer)
-                        </li>
-                        <li className="flex gap-1.5">
-                          <span className="text-teal-500 mt-0.5 shrink-0">
-                            &#8226;
-                          </span>
-                          9건의 버그 수정 및 코드 리뷰 참여
-                        </li>
-                        <li className="flex gap-1.5">
-                          <span className="text-teal-500 mt-0.5 shrink-0">
-                            &#8226;
-                          </span>
-                          Jira, Slack, GitHub 기반 실무 협업
+                          <span className="text-teal-500 mt-0.5 shrink-0">&#8226;</span>
+                          Jira · Slack · GitHub PR 기반 실무 협업 (코드 리뷰 참여)
                         </li>
                       </ul>
                     </div>

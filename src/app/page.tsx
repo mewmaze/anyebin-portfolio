@@ -67,14 +67,9 @@ export default function Home() {
                 className="mt-6 sm:mt-8 text-base sm:text-lg text-gray-600 text-center leading-relaxed max-w-2xl"
                 variants={itemVariants}
               >
-                React와 Next.js로 다양한 프로젝트를 개발해왔습니다.
-                <br className="sm:block" />
-                <span className="hidden sm:inline">
-                  사용자에게 즐거운 웹 경험을 제공하는 개발자를 꿈꿉니다.
-                </span>
-                <span className="sm:hidden">
-                  사용자에게 즐거운 경험을 주는 개발자를 꿈꿉니다.
-                </span>
+                <span className="block">문제가 발생했을 때 원인을 먼저 이해하려는 프론트엔드 개발자입니다.</span>
+                <span className="block">동작하는 코드에서 멈추지 않고,</span>
+                <span className="block">왜 이렇게 동작하는지를 파고드는 개발을 지향합니다.</span>
               </motion.p>
 
               <motion.button
